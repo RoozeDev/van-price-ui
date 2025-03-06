@@ -1,0 +1,16 @@
+version: '3.4'
+
+volumes:
+  van-price-service-ui:
+    name: "van-price-service-ui"
+    external: true
+
+services:
+  resources:
+    image: alpine:latest
+    volumes:
+      - van-price-service-ui:/resources
+      - ./source:/source:ro
+    command: >
+      sh -c "cp -r /source/* /resources/ && echo Files copied successfully"
+    working_dir: /source
